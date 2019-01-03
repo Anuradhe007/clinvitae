@@ -66,10 +66,22 @@
 	border: 1px solid #03bfae;
 }
 
+.exportbtn{
+	padding: 4px 6px;
+	color: #03bfae;
+	border: none;
+}
+
 .filterbtn:hover{
 	background-color: #71daad96;
 	color: #fff;
 	border: 1px solid #03bfae;
+}
+
+.exportbtn:hover{
+	background-color: #71daad96;
+	color: #fff;
+	border: none;
 }
 
 .filter-section{
