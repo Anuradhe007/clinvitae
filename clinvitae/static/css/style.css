@@ -1,0 +1,187 @@
+.datatable{
+	width: 100%; 
+  border-collapse: collapse; 
+  table-layout: fixed;
+}
+
+.datatable.table-hover>tbody>tr:hover {
+    background-color: #71daad96;
+    table-layout:fixed;
+}
+
+.datatable.table>tbody>tr>td, 
+.datatable.table>tbody>tr>th, 
+.datatable.table>tfoot>tr>td, 
+.datatable.table>tfoot>tr>th, 
+.datatable.table>thead>tr>td, 
+.datatable.table>thead>tr>th {
+    padding: 9px 10px 6px 9px;
+    height: 30px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 0px solid #ddd;
+}
+
+
+.datatable.table>thead>tr>th {
+    vertical-align: bottom;
+    border-bottom: 0px solid #ddd;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: left;
+    background-color: #1a989e;
+}
+
+.datatable.table>thead>tr>th:hover {
+    background: #13d2b0;
+}
+
+.datatable.table>tbody>tr>td {
+    font-size: 12px;
+}
+#filter td{
+	padding: 1px 1px;
+	position: relative;
+}
+#filter input[type=text]{
+	width: 75%;
+}
+
+#filter td span{
+    display: none;
+}
+#filter .filtericon{
+	width: 5%;
+	margin-left: 2px;
+	color: #312f2f8c;
+	cursor: pointer;
+}
+
+
+.filterbtn{
+	padding: 4px 6px;
+	color: #03bfae;
+	border: 1px solid #03bfae;
+}
+
+.filterbtn:hover{
+	background-color: #71daad96;
+	color: #fff;
+	border: 1px solid #03bfae;
+}
+
+.filter-section{
+	margin-bottom: 10px;
+}
+
+.filter-options{
+	position: absolute;
+	padding-left: 5px;
+	top: 25px;
+	left: 0px;
+	list-style: none;
+	background: #ddd;
+	width:73%;	
+	border: 1px solid #1a989e;
+	box-sizing: border-box;	
+    z-index: 9999;	
+}
+
+.filter-options li{
+	padding: 2px;
+	
+}
+
+.filter-options li a{
+	
+	text-decoration: none;
+	color:#000;
+}
+
+.filter-options li:hover{
+	background-color: yellow;	
+}
+
+
+
+
+
+@media screen and (max-width: 768px) {
+    table.datatable {
+        border: 0;
+    }
+
+    table.datatable caption {
+        font-size: 1.3em;
+    }
+
+    table.datatable thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        //position: absolute;
+        width: 1px;
+    }
+    table.datatable thead tr.theading {
+        display: none;
+    }
+    table.datatable tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .625em;
+    }
+    
+    table.datatable thead tr#filter td::before{
+       color: #03bfae;
+       content: attr(data-value);
+       margin-right: 10px;
+       font-size: 10px;
+    }
+
+    table.datatable thead tr#filter input[type=text] {
+        width: 50%;
+    }
+
+    #filter .filtericon {
+    margin-right: 3px;
+    }
+
+    #filter .filter-options {
+            right: 32px;
+            width: 50%;
+            left: unset;
+            top: 25px;
+
+    }
+    
+    #filter td {
+        display: block !important;
+    }
+
+    table.datatable td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+    }
+
+    table.datatable tbody td::before {
+        /*
+        * aria-label has no advantage, it won't be read inside a table
+        content: attr(aria-label);
+        */
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    table.datatable td:last-child {
+        border-bottom: 0;
+    }
+}
