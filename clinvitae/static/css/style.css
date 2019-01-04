@@ -28,7 +28,7 @@
     border-bottom: 0px solid #ddd;
     color: #fff;
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 11px;
     cursor: pointer;
     text-align: left;
     background-color: #1a989e;
@@ -46,19 +46,19 @@
 	position: relative;
 }
 #filter input[type=text]{
-	width: 75%;
+	width: 85%;
 }
 
 #filter td span{
     display: none;
 }
 #filter .filtericon{
-	width: 5%;
+    font-size: 8px;
+	width: 3%;
 	margin-left: 2px;
 	color: #312f2f8c;
 	cursor: pointer;
 }
-
 
 .filterbtn{
 	padding: 4px 6px;
@@ -164,8 +164,8 @@
     }
 
     #filter .filter-options {
-            right: 32px;
-            width: 50%;
+            right: 15px;
+            width: 30%;
             left: unset;
             top: 25px;
 
@@ -198,12 +198,16 @@
     }
 }
 
+.panel-heading {
+    padding: 0px 0px;
+}
+
 .panel-heading .accordion-toggle:after {
     /* symbol for "opening" panels */
     font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
     content: "\e114";    /* adjust as needed, taken from bootstrap.css */
     float: left;        /* adjust as needed */
-    color: #b7e7df;         /* adjust as needed */
+    color: #10F382;         /* adjust as needed */
 }
 .panel-heading .accordion-toggle.collapsed:after {
     /* symbol for "collapsed" panels */

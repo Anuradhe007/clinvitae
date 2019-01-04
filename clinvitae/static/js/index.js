@@ -85,3 +85,114 @@ document.getElementById("exportBtn").addEventListener("click", function () {
     var html = document.querySelector("table").outerHTML;
 	export_table_to_csv(html, "export.csv");
 });
+
+$(document).ready(function() {
+//#71daad96;
+$('.gene-head').click(function() {
+    $(".nucleotide-data, .nucleotide-filter").css({"background-color": ""});
+    $(".protein-data, .protein-filter").css({"background-color": ""});
+    $(".alias-data, .alias-filter").css({"background-color": ""});
+    $(".region-data, .region-filter").css({"background-color": ""});
+    $(".reported-data, .reported-filter").css({"background-color": ""});
+    $(".evaluated-data, .evaluated-filter").css({"background-color": ""});
+    $(".updated-data, .updated-filter").css({"background-color": ""});
+    $(".info-data, .info-filter").css({"background-color": ""});
+    $(".gene-data, .gene-filter").css({"background-color": "#71daad96"});
+});
+
+$('.nucleotide-head').click(function() {
+    $(".protein-data, .protein-filter").css({"background-color": ""});
+    $(".alias-data, .alias-filter").css({"background-color": ""});
+    $(".region-data, .region-filter").css({"background-color": ""});
+    $(".reported-data, .reported-filter").css({"background-color": ""});
+    $(".evaluated-data, .evaluated-filter").css({"background-color": ""});
+    $(".updated-data, .updated-filter").css({"background-color": ""});
+    $(".info-data, .info-filter").css({"background-color": ""});
+    $(".gene-data, .gene-filter").css({"background-color": ""});
+    $(".nucleotide-data, .nucleotide-filter").css({"background-color": "#71daad96"});
+});
+
+$('.protein-head').click(function() {
+    $(".nucleotide-data, .nucleotide-filter").css({"background-color": ""});
+    $(".alias-data, .alias-filter").css({"background-color": ""});
+    $(".region-data, .region-filter").css({"background-color": ""});
+    $(".reported-data, .reported-filter").css({"background-color": ""});
+    $(".evaluated-data, .evaluated-filter").css({"background-color": ""});
+    $(".updated-data, .updated-filter").css({"background-color": ""});
+    $(".info-data, .info-filter").css({"background-color": ""});
+    $(".gene-data, .gene-filter").css({"background-color": ""});
+    $(".protein-data, .protein-filter").css({"background-color": "#71daad96"});
+});
+
+$('.alias-head').click(function() {
+    $(".nucleotide-data, .nucleotide-filter").css({"background-color": ""});
+    $(".protein-data, .protein-filter").css({"background-color": ""});
+    $(".region-data, .region-filter").css({"background-color": ""});
+    $(".reported-data, .reported-filter").css({"background-color": ""});
+    $(".evaluated-data, .evaluated-filter").css({"background-color": ""});
+    $(".updated-data, .updated-filter").css({"background-color": ""});
+    $(".info-data, .info-filter").css({"background-color": ""});
+    $(".gene-data, .gene-filter").css({"background-color": ""});
+    $(".alias-data, .alias-filter").css({"background-color": "#71daad96"});
+});
+
+$('.region-head').click(function() {
+$(".nucleotide-data, .nucleotide-filter").css({"background-color": ""});
+    $(".protein-data, .protein-filter").css({"background-color": ""});
+    $(".reported-data, .reported-filter").css({"background-color": ""});
+    $(".evaluated-data, .evaluated-filter").css({"background-color": ""});
+    $(".updated-data, .updated-filter").css({"background-color": ""});
+    $(".info-data, .info-filter").css({"background-color": ""});
+    $(".gene-data, .gene-filter").css({"background-color": ""});
+    $(".alias-data, .alias-filter").css({"background-color": ""});
+    $(".region-data, .region-filter").css({"background-color": "#71daad96"});
+});
+
+$('.reported-head').click(function() {
+$(".nucleotide-data, .nucleotide-filter").css({"background-color": ""});
+    $(".protein-data, .protein-filter").css({"background-color": ""});
+    $(".region-data, .region-filter").css({"background-color": ""});
+    $(".evaluated-data, .evaluated-filter").css({"background-color": ""});
+    $(".updated-data, .updated-filter").css({"background-color": ""});
+    $(".info-data, .info-filter").css({"background-color": ""});
+    $(".gene-data, .gene-filter").css({"background-color": ""});
+    $(".alias-data, .alias-filter").css({"background-color": ""});
+    $(".reported-data, .reported-filter").css({"background-color": "#71daad96"});
+});
+
+$('.evaluated-head').click(function() {
+$(".nucleotide-data, .nucleotide-filter").css({"background-color": ""});
+    $(".protein-data, .protein-filter").css({"background-color": ""});
+    $(".region-data, .region-filter").css({"background-color": ""});
+    $(".reported-data, .reported-filter").css({"background-color": ""});
+    $(".updated-data, .updated-filter").css({"background-color": ""});
+    $(".info-data, .info-filter").css({"background-color": ""});
+    $(".gene-data, .gene-filter").css({"background-color": ""});
+    $(".alias-data, .alias-filter").css({"background-color": ""});
+    $(".evaluated-data, .evaluated-filter").css({"background-color": "#71daad96"});
+});
+
+$('.updated-head').click(function() {
+$(".nucleotide-data, .nucleotide-filter").css({"background-color": ""});
+    $(".protein-data, .protein-filter").css({"background-color": ""});
+    $(".region-data, .region-filter").css({"background-color": ""});
+    $(".reported-data, .reported-filter").css({"background-color": ""});
+    $(".evaluated-data, .evaluated-filter").css({"background-color": ""});
+    $(".info-data, .info-filter").css({"background-color": ""});
+    $(".gene-data, .gene-filter").css({"background-color": ""});
+    $(".alias-data, .alias-filter").css({"background-color": ""});
+    $(".updated-data, .updated-filter").css({"background-color": "#71daad96"});
+});
+
+$('.info-head').click(function() {
+$(".nucleotide-data, .nucleotide-filter").css({"background-color": ""});
+    $(".protein-data, .protein-filter").css({"background-color": ""});
+    $(".region-data, .region-filter").css({"background-color": ""});
+    $(".reported-data, .reported-filter").css({"background-color": ""});
+    $(".evaluated-data, .evaluated-filter").css({"background-color": ""});
+    $(".updated-data, .updated-filter").css({"background-color": ""});
+    $(".gene-data, .gene-filter").css({"background-color": ""});
+    $(".alias-data, .alias-filter").css({"background-color": ""});
+    $(".info-data, .info-filter").css({"background-color": "#71daad96"});
+});
+});
