@@ -25,7 +25,9 @@
 
 </head>
 <body>
-
+<script type="text/javascript">
+   var gene_filter = "{{gene_filter}}";
+</script>
 <br><br><br>
 
 <br><br>
@@ -53,15 +55,15 @@
 <table class="datatable table table-striped table-hover">
     <thead>
     <tr class="theading">
-        <th class="gene-head" style="width: 7%">GENE</th>
-        <th class="nucleotide-head" style="width: 15%">NUCLEOTIDE CHANGE</th>
-        <th class="protein-head" style="width: 10%">PROTEIN CHANGE</th>
-        <th class="alias-head" style="width: 8%">ALIAS</th>
-        <th class="region-head" style="width: 15%">REGION</th>
-        <th class="reported-head" style="width: 15%">REPORTED CLASSIFICATION</th>
-        <th class="evaluated-head" style="width: 10%">LAST EVALUATED</th>
-        <th class="updated-head" style="width: 10%">LAST UPDATED</th>
-        <th class="info-head" style="width: 10%">MORE INFO</th>
+        <th class="gene-head" style="width: 7%">GENE<i style="float:right;"></i></th>
+        <th class="nucleotide-head" style="width: 15%">NUCLEOTIDE CHANGE<i style="float:right;"></i></th>
+        <th class="protein-head" style="width: 10%">PROTEIN CHANGE<i style="float:right;"></i></th>
+        <th class="alias-head" style="width: 8%">ALIAS<i style="float:right;"></i></th>
+        <th class="region-head" style="width: 15%">REGION<i style="float:right;"></i></th>
+        <th class="reported-head" style="width: 15%">REPORTED CLASSIFICATION<i style="float:right;"></i></th>
+        <th class="evaluated-head" style="width: 10%">LAST EVALUATED<i style="float:right;"></i></th>
+        <th class="updated-head" style="width: 10%">LAST UPDATED<i style="float:right;"></i></th>
+        <th class="info-head" style="width: 10%">MORE INFO<i style="float:right;"></i></th>
     </tr>
 
     <tr id="filter">
@@ -115,7 +117,7 @@
     </tbody>
 </table>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 <script src="{% static 'js/index.js' %}"></script>
