@@ -22,6 +22,10 @@
     border-top: 0px solid #ddd;
 }
 
+.datatable.table>thead>tr>th>i {
+    float:right;
+    display:none;
+}
 
 .datatable.table>thead>tr>th {
     vertical-align: bottom;
@@ -49,9 +53,6 @@
 	width: 85%;
 }
 
-#filter td span{
-    display: none;
-}
 #filter .filtericon{
     font-size: 8px;
 	width: 3%;

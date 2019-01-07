@@ -55,15 +55,15 @@
 <table class="datatable table table-striped table-hover">
     <thead>
     <tr class="theading">
-        <th class="gene-head" style="width: 7%">GENE<i style="float:right;"></i></th>
-        <th class="nucleotide-head" style="width: 15%">NUCLEOTIDE CHANGE<i style="float:right;"></i></th>
-        <th class="protein-head" style="width: 10%">PROTEIN CHANGE<i style="float:right;"></i></th>
-        <th class="alias-head" style="width: 8%">ALIAS<i style="float:right;"></i></th>
-        <th class="region-head" style="width: 15%">REGION<i style="float:right;"></i></th>
-        <th class="reported-head" style="width: 15%">REPORTED CLASSIFICATION<i style="float:right;"></i></th>
-        <th class="evaluated-head" style="width: 10%">LAST EVALUATED<i style="float:right;"></i></th>
-        <th class="updated-head" style="width: 10%">LAST UPDATED<i style="float:right;"></i></th>
-        <th class="info-head" style="width: 10%">MORE INFO<i style="float:right;"></i></th>
+        <th class="gene-head" style="width: 7%">GENE<i class="glyphicon glyphicon-triangle-top"></i></th>
+        <th class="nucleotide-head" style="width: 16%">NUCLEOTIDE CHANGE<i class="glyphicon glyphicon-triangle-top"></i></th>
+        <th class="protein-head" style="width: 11%">PROTEIN CHANGE<i class="glyphicon glyphicon-triangle-top"></i></th>
+        <th class="alias-head" style="width: 8%">ALIAS<i class="glyphicon glyphicon-triangle-top"></i></th>
+        <th class="region-head" style="width: 15%">REGION<i class="glyphicon glyphicon-triangle-top"></i></th>
+        <th class="reported-head" style="width: 15%">REPORTED CLASSIFICATION<i class="glyphicon glyphicon-triangle-top"></i></th>
+        <th class="evaluated-head" style="width: 10%">LAST EVALUATED<i class="glyphicon glyphicon-triangle-top"></i></th>
+        <th class="updated-head" style="width: 10%">LAST UPDATED<i class="glyphicon glyphicon-triangle-top"></i></th>
+        <th class="info-head" style="width: 8%">MORE INFO<i class="glyphicon glyphicon-triangle-top"></i></th>
     </tr>
 
     <tr id="filter">
@@ -93,24 +93,31 @@
         <td class="nucleotide-data" data-label="NUCLEOTIDE CHANGE">
 
             <div class="panel-heading">
-                <span class="accordion-toggle" data-toggle="collapse" data-target="#collapse{{ data.id }}">
+                <span class="accordion-toggle collapsed" data-toggle="collapse" data-target="#collapse{{ data.id }}">
                     {{data.nucleotide_change}}
                 </span>
             </div>
-            <div id="collapse{{ data.id }}" class="panel-collapse collapse in">
+            <div id="collapse{{ data.id }}" class="panel-collapse collapse">
                 <div class="panel-body">
                     Anim pariatur cliche
                     squid. 3 wolf moon
                 </div>
             </div>
         </td>
-        <td class="protein-data" data-label="PROTEIN CHANGE">{{data.protein_change}}</td>
-        <td class="alias-data" data-label="ALIAS">{{data.alias}}</td>
-        <td class="region-data" data-label="REGION">{{data.region}}</td>
+        <td class="protein-data" data-label="PROTEIN CHANGE">-</td>
+        <td class="alias-data" data-label="ALIAS">-</td>
+        <td class="region-data" data-label="REGION">
+            {% if data.id <= 5  %}
+                -
+            {% endif %}
+            {% if data.id > 5  %}
+                region
+            {% endif %}
+        </td>
         <td class="reported-data" data-label="REPORTED CLASSIFICATION">{{data.reported_classification}}</td>
-        <td class="evaluated-data" data-label="LAST EVALUATED">{{data.last_evaluated}}</td>
-        <td class="updated-data" data-label="LAST UPDATED">{{data.last_updated}}</td>
-        <td class="info-data" data-label="MORE INFO"><a href="#">ClinVar</a></td>
+        <td class="evaluated-data" data-label="LAST EVALUATED">2019-01-08</td>
+        <td class="updated-data" data-label="LAST UPDATED">2019-01-06</td>
+        <td class="info-data" data-label="MORE INFO"><a href="{{data.more_info}}" target="_blank">ClinVar</a></td>
     </tr>
     {% endfor %}
 
