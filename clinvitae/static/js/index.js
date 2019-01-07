@@ -1,45 +1,4 @@
-$(".filterbtn").click(function(){
-		  $("#filter").toggle();
-		});
-
-
-
-    	$(document).on("click",".filtericon",function() {
-
-
-		    var listHtml;
-		    listHtml = '<ul class="filter-options" style="">';
-			listHtml += 	'<li><a class="filterLink" href="">BRCC3</a></li>';
-			listHtml += 	'<li><a class="filterLink" href="">BRCA1</a></li>';
-			listHtml += '</ul>';
-
-			//if already available toggle view
-			//if there is not available then append
-
-			if($(this).parent('td').find('.filter-options').length  > 0){
-				$(this).parent('td').find('.filter-options').toggle("fast");
-			}else{
-				$(this).parent('td').append(listHtml).hide().show('fast');
-			}
-
-            //$(".filter-options").not(this).hide("slow");
-            //hide other list
-            $(".filter-options").not($(this).parent('td').find('.filter-options')).hide("fast");
-
-
-		});
-
-        $('.gene-filter').find('a').click(function() {
-            console.log('a');
-        });
-
-		$(document).on("click",".filterLink",function(event) {
-		    $('.filter-options').hide("fast");
-		    event.preventDefault();
-
-		});
-
-        function download_csv(csv, filename) {
+    function download_csv(csv, filename) {
     var csvFile;
     var downloadLink;
 
@@ -88,7 +47,55 @@ document.getElementById("exportBtn").addEventListener("click", function () {
 });
 
 $(document).ready(function() {
-//#71daad96;
+
+    var listHtml;
+    listHtml = '<ul class="filter-options" style="">';
+    listHtml += 	'<li><a class="filterLink" href="">BRCC3</a></li>';
+    listHtml += 	'<li><a class="filterLink" href="">BRCA1</a></li>';
+    listHtml += '</ul>';
+    $('.gene-filter').find('span').append(listHtml);
+    $('.gene-filter').find('ul').hide();
+    $('.gene-filter').find('span').show();
+
+    var listHtml2;
+    listHtml2 = '<ul class="filter-options" style="">';
+    listHtml2 += 	'<li><a class="filterLink" href="">Likely benign</a></li>';
+    listHtml2 += 	'<li><a class="filterLink" href="">Variant of uncertain significance</a></li>';
+    listHtml2 += '</ul>';
+    $('.reported-filter').find('span').append(listHtml2);
+    $('.reported-filter').find('ul').hide();
+    $('.reported-filter').find('span').show();
+
+    $(".filterbtn").click(function(){
+	    $("#filter").toggle();
+	});
+
+    $('.gene-filter').find('.filtericon').click(function() {
+
+        if($(this).parent('td').find('.filter-options').length  > 0){
+            $(this).parent('td').find('.filter-options').toggle("fast");
+        }
+        $(".filter-options").not($(this).parent('td').find('.filter-options')).hide("fast");
+
+    });
+
+    $('.reported-filter').find('.filtericon').click(function() {
+
+        if($(this).parent('td').find('.filter-options').length  > 0){
+            $(this).parent('td').find('.filter-options').toggle("fast");
+        }
+        $(".filter-options").not($(this).parent('td').find('.filter-options')).hide("fast");
+
+    });
+
+
+    $(document).on("click",".filterLink",function(event) {
+        var selectedValue = $(this).text();
+        $(this).closest('td').find('input').val(selectedValue);
+        $('.filter-options').hide("fast");
+        event.preventDefault();
+    });
+
 $('.gene-head').click(function() {
     $(".nucleotide-data, .nucleotide-filter").css({"background-color": ""});
     $(".protein-data, .protein-filter").css({"background-color": ""});
@@ -306,16 +313,29 @@ $('.info-head').click(function() {
 });
 
 $(".gene-head").find('i').click(function() {
-console.log('here');
     if($(this).hasClass('glyphicon-triangle-top')) {
-    console.log('here1');
             $(this).addClass("glyphicon-triangle-bottom");
             $(this).removeClass("glyphicon-triangle-top");
     } else {
-    console.log('here3');
             $(this).removeClass("glyphicon-triangle-bottom");
             $(this).addClass("glyphicon-triangle-top");
     }
 });
+
+function hideRowsFilter(className, filterValue) {
+    $('#tableBody').find('tr').each(function() {
+        if($(this).find(className).text().trim() != filterValue) {
+            $(this).hide();
+        }
+    });
+}
+
+function hideRowsWhenDrag(className) {
+    $('#tableBody').find('tr').each(function() {
+        if($(this).find(className).text().trim().length == 0) {
+            $(this).hide();
+        }
+    });
+}
 
 });
