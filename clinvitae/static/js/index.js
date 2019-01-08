@@ -26,7 +26,23 @@
 
 function export_table_to_csv(html, filename) {
 	var csv = [];
-	var rows = document.querySelectorAll("table tr");
+
+	$('table').find('tr').each(function() {
+	    var row = [];
+	    if(!$(this).is(":hidden")) {
+	        $(this).find('th').each(function() {
+	            row.push($(this).text().trim());
+	            console.log($(this).text().trim());
+	        });
+	        $(this).find('td').each(function() {
+	            row.push($(this).text().trim());
+	            console.log($(this).text().trim());
+	        });
+	    }
+	    csv.push(row.join(","));
+	});
+
+	/*var rows = document.querySelectorAll("table tr");
 
     for (var i = 0; i < rows.length; i++) {
 		var row = [], cols = rows[i].querySelectorAll("td, th");
@@ -35,7 +51,7 @@ function export_table_to_csv(html, filename) {
             row.push(cols[j].innerText);
 
 		csv.push(row.join(","));
-	}
+	}*/
 
     // Download CSV
     download_csv(csv.join("\n"), filename);
@@ -98,6 +114,20 @@ $(document).ready(function() {
         }
         $(this).closest('.filter-options').hide();
         e.preventDefault();
+    });
+
+    $('#resetBtn').click(function() {
+        $('#filter').find('input').val('');
+        $('#tableBody').find("tr:hidden").show();
+        $('#filter').find('td').css({"background-color": ""});
+        $('#tableBody').find('td').css({"background-color": ""});
+
+        if($(".theading").find('i').hasClass('glyphicon-triangle-bottom')) {
+                $(".theading").find('i').removeClass("glyphicon-triangle-bottom");
+                $(".theading").find('i').addClass("glyphicon-triangle-top");
+                $(".theading").find('i').hide();
+        }
+
     });
 
 $('.gene-head').click(function() {
