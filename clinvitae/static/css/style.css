@@ -23,7 +23,7 @@
 }
 
 .datatable.table>thead>tr>th>i {
-    float:right;
+    padding-left:2em;
     display:none;
 }
 
@@ -95,7 +95,7 @@
 	top: 25px;
 	left: 0px;
 	list-style: none;
-	background: #ddd;
+	background: #aef2e6;
 	width:85%;
 	border: 1px solid #1a989e;
 	box-sizing: border-box;	

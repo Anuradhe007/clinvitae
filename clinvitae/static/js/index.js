@@ -48,30 +48,40 @@ document.getElementById("exportBtn").addEventListener("click", function () {
 
 $(document).ready(function() {
 
-    /*var listHtml;
+    var listHtml;
     listHtml = '<ul class="filter-options" style="">';
-    listHtml += 	'<li><a class="filterLink" href="">BRCC3</a></li>';
-    listHtml += 	'<li><a class="filterLink" href="">BRCA1</a></li>';
+    listHtml += 	'<li><a class="filterLink" href="">No filter</a></li>';
+    listHtml += 	'<li><a class="filterLink" href="">Contains</a></li>';
+    listHtml += 	'<li><a class="filterLink" href="">Does not contains</a></li>';
+    listHtml += 	'<li><a class="filterLink" href="">Starts with</a></li>';
+    listHtml += 	'<li><a class="filterLink" href="">Ends with</a></li>';
+    listHtml += 	'<li><a class="filterLink" href="">Equal to</a></li>';
+    listHtml += 	'<li><a class="filterLink" href="">Not equal to</a></li>';
+    listHtml += 	'<li><a class="filterLink" href="">Greater than</a></li>';
+    listHtml += 	'<li><a class="filterLink" href="">Less than</a></li>';
+    listHtml += 	'<li><a class="filterLink" href="">Greater than or equal to</a></li>';
+    listHtml += 	'<li><a class="filterLink" href="">Less than or equal to</a></li>';
+    listHtml += 	'<li><a class="filterLink" href="">Is empty</a></li>';
+    listHtml += 	'<li><a class="filterLink" href="">Not is empty</a></li>';
     listHtml += '</ul>';
-    $('.gene-filter').find('span').append(listHtml);
-    $('.gene-filter').find('ul').hide();
-    $('.gene-filter').find('span').show();
-
-    var listHtml2;
-    listHtml2 = '<ul class="filter-options" style="">';
-    listHtml2 += 	'<li><a class="filterLink" href="">Likely benign</a></li>';
-    listHtml2 += 	'<li><a class="filterLink" href="">Variant of uncertain significance</a></li>';
-    listHtml2 += '</ul>';
-    $('.reported-filter').find('span').append(listHtml2);
-    $('.reported-filter').find('ul').hide();
-    $('.reported-filter').find('span').show();*/
-
-    $('span').show();
+    $('#filter').find('span').append(listHtml);
+    $('#filter').find('ul').hide();
     $("#filter").toggle();
+
     $(".filterbtn").click(function(){
 	    $("#filter").toggle();
 	});
+
     $('.filtericon').click(function() {
+
+        if($(this).parent('td').find('.filter-options').length  > 0){
+            $(this).parent('td').find('.filter-options').toggle("fast");
+        }
+        $(".filter-options").not($(this).parent('td').find('.filter-options')).hide("fast");
+
+    });
+
+    $('.filterLink').click(function(e) {
 
         var selectedValue = $(this).closest('td').find('input').val();
         var className = '';
@@ -86,6 +96,8 @@ $(document).ready(function() {
         } else {
             showHidedRows(className);
         }
+        $(this).closest('.filter-options').hide();
+        e.preventDefault();
     });
 
 $('.gene-head').click(function() {
