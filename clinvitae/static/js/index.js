@@ -2,25 +2,12 @@
     var csvFile;
     var downloadLink;
 
-    // CSV FILE
     csvFile = new Blob([csv], {type: "text/csv"});
-
-    // Download link
     downloadLink = document.createElement("a");
-
-    // File name
     downloadLink.download = filename;
-
-    // We have to create a link to the file
     downloadLink.href = window.URL.createObjectURL(csvFile);
-
-    // Make sure that the link is not displayed
     downloadLink.style.display = "none";
-
-    // Add the link to your DOM
     document.body.appendChild(downloadLink);
-
-    // Lanzamos
     downloadLink.click();
 }
 
@@ -29,31 +16,25 @@ function export_table_to_csv(html, filename) {
 
 	$('table').find('tr').each(function() {
 	    var row = [];
-	    if(!$(this).is(":hidden")) {
+	    var td_text = '';
+	    if(!$(this).is(":hidden") && !$(this).is('#filter')) {
 	        $(this).find('th').each(function() {
 	            row.push($(this).text().trim());
 	            console.log($(this).text().trim());
 	        });
 	        $(this).find('td').each(function() {
-	            row.push($(this).text().trim());
-	            console.log($(this).text().trim());
+	            if($(this).find('div').hasClass('panel-heading')){
+	                td_text = $(this).find('.panel-heading>span').text().trim() + ' ' + $(this).find('.panel-collapse > .panel-body').text().trim();
+	            } else if($(this).find('a').length) {
+	                td_text = $(this).find('a').attr('href').trim();
+	            } else {
+	                td_text = $(this).text().trim();
+	            }
+	            row.push(td_text);
 	        });
+	        csv.push(row.join(","));
 	    }
-	    csv.push(row.join(","));
 	});
-
-	/*var rows = document.querySelectorAll("table tr");
-
-    for (var i = 0; i < rows.length; i++) {
-		var row = [], cols = rows[i].querySelectorAll("td, th");
-
-        for (var j = 0; j < cols.length; j++)
-            row.push(cols[j].innerText);
-
-		csv.push(row.join(","));
-	}*/
-
-    // Download CSV
     download_csv(csv.join("\n"), filename);
 }
 
@@ -65,7 +46,7 @@ document.getElementById("exportBtn").addEventListener("click", function () {
 $(document).ready(function() {
 
     var listHtml;
-    listHtml = '<ul class="filter-options" style="">';
+    listHtml = '<ul class="filter-options dropdown-menu" style="">';
     listHtml += 	'<li><a class="filterLink" href="">No filter</a></li>';
     listHtml += 	'<li><a class="filterLink" href="">Contains</a></li>';
     listHtml += 	'<li><a class="filterLink" href="">Does not contains</a></li>';
@@ -84,20 +65,25 @@ $(document).ready(function() {
     $('#filter').find('ul').hide();
     $("#filter").toggle();
 
+    $('.theading, #filter td > span > input, #tableBody').click(function() {
+         $(".filter-options").hide("fast");
+    });
+
     $(".filterbtn").click(function(){
 	    $("#filter").toggle();
+	    $(".filter-options").hide("fast");
 	});
 
     $('.filtericon').click(function() {
-
+        var span_width = $(this).closest('td').find('span').width();
+        $(".filter-options").css({"transform":"translate(" + span_width + "px,0px)"});
         if($(this).parent('td').find('.filter-options').length  > 0){
             $(this).parent('td').find('.filter-options').toggle("fast");
         }
         $(".filter-options").not($(this).parent('td').find('.filter-options')).hide("fast");
-
     });
 
-    $('.filterLink').click(function(e) {
+    $('.filter-options').find('li').click(function(e) {
 
         var selectedValue = $(this).closest('td').find('input').val();
         var className = '';
@@ -120,6 +106,7 @@ $(document).ready(function() {
         $('#filter').find('input').val('');
         $('#tableBody').find("tr:hidden").show();
         $('#filter').find('td').css({"background-color": ""});
+        $(".filter-options").hide("fast");
         $('#tableBody').find('td').css({"background-color": ""});
 
         if($(".theading").find('i').hasClass('glyphicon-triangle-bottom')) {
@@ -128,6 +115,15 @@ $(document).ready(function() {
                 $(".theading").find('i').hide();
         }
 
+    });
+
+    $( window ).resize(function() {
+        $('#filter').find('td').each(function() {
+            if(!$(this).find('ul:hidden').length) {
+                var span_width = $(this).find('span').width();
+                $(this).find('.filter-options').css({"transform":"translate(" + span_width + "px,0px)"});
+            }
+        });
     });
 
 $('.gene-head').click(function() {

@@ -91,19 +91,30 @@
 
 .filter-options{
 	position: absolute;
-	padding-left: 5px;
+	padding-left: 0px;
 	top: 25px;
 	left: 0px;
 	list-style: none;
 	background: #aef2e6;
-	width:85%;
+	width:85% !important;
 	border: 1px solid #1a989e;
 	box-sizing: border-box;	
-    z-index: 9999;	
+    z-index: 9999;
+}
+
+.dropdown-menu > li > a {
+    display: block;
+    padding: 0px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
 }
 
 .filter-options li{
 	padding: 2px;
+	cursor: pointer;
 	
 }
 
@@ -114,7 +125,7 @@
 }
 
 .filter-options li:hover{
-	background-color: yellow;	
+
 }
 
 
