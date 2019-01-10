@@ -342,11 +342,11 @@ $('.info-head').click(function() {
 });
 
 $(".theading").find('i').click(function() {
-        if($('.theading').find('th').hasClass('region-head') && $(this).hasClass('glyphicon-triangle-top')) {
+        if($(this).parent('th').hasClass('region-head') && $(this).hasClass('glyphicon-triangle-top')) {
                 $(this).removeClass("glyphicon-triangle-top");
                 $(this).addClass("glyphicon-triangle-bottom");
                 hideRowsWhenDrag('.region-data');
-        } else if($('.theading').find('th').hasClass('region-head')) {
+        } else if($(this).parent('th').hasClass('region-head')) {
                 $(this).removeClass("glyphicon-triangle-bottom");
                 $(this).addClass("glyphicon-triangle-top");
                 showRowsWhenDrag('.region-data');
