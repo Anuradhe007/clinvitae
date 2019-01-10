@@ -225,3 +225,39 @@
     /* symbol for "collapsed" panels */
     content: "\e250"; /* adjust as needed, taken from bootstrap.css */
 }
+
+.gene-hide {
+    display: none;
+}
+
+.nucleotide-hide {
+    display: none;
+}
+
+.protein-hide {
+    display: none;
+}
+
+.alias-hide {
+    display: none;
+}
+
+.region-hide {
+    display: none;
+}
+
+.reported-hide {
+    display: none;
+}
+
+.evaluated-hide {
+    display: none;
+}
+
+.updated-hide {
+    display: none;
+}
+
+.info-hide {
+    display: none;
+}

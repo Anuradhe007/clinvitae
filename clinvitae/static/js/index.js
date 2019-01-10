@@ -83,23 +83,70 @@ $(document).ready(function() {
         $(".filter-options").not($(this).parent('td').find('.filter-options')).hide("fast");
     });
 
-    $('.filter-options').find('li').click(function(e) {
+    $('.filter-options').find('li').click(function(event) {
 
         var selectedValue = $(this).closest('td').find('input').val();
         var className = '';
+        var appendingClassName = '';
         if($(this).closest('td').hasClass('gene-filter')) {
             className = '.gene-data';
+            appendingClassName = 'gene-hide';
         } else if($(this).closest('td').hasClass('reported-filter')) {
             className = '.reported-data';
+            appendingClassName = 'reported-hide';
         }
-        if(selectedValue != null && selectedValue.trim().length  > 0){
 
-            hideRowsFilter(className, selectedValue.trim());
-        } else {
-            showHidedRows(className);
+        if($(this).text().trim()=='No filter') {
+            showHidedRows(className, appendingClassName);
+        } else if($(this).text().trim()=='Equal to') {
+            if(selectedValue != null && selectedValue.trim().length  > 0){
+                hideRowsFilter(className, selectedValue.trim(), appendingClassName);
+            }
+        } else if($(this).text().trim()=='Contains') {
+            if(selectedValue != null && selectedValue.trim().length  > 0){
+                hideRowsFilterContains(className, selectedValue.trim(), appendingClassName);
+            }
+        } else if($(this).text().trim()=='Does not contains') {
+            if(selectedValue != null && selectedValue.trim().length  > 0){
+                hideRowsFilterNotContains(className, selectedValue.trim(), appendingClassName);
+            }
+        } else if($(this).text().trim()=='Starts with') {
+            if(selectedValue != null && selectedValue.trim().length  > 0){
+                filterStartsWith(className, selectedValue.trim(), appendingClassName);
+            }
+        } else if($(this).text().trim()=='Ends with') {
+            if(selectedValue != null && selectedValue.trim().length  > 0){
+                filterEndsWith(className, selectedValue.trim(), appendingClassName);
+            }
+        } else if($(this).text().trim()=='Not equal to') {
+            if(selectedValue != null && selectedValue.trim().length  > 0){
+                hideRowsFilterNotEqual(className, selectedValue.trim(), appendingClassName);
+            }
+        } else if($(this).text().trim()=='Is empty') {
+            hideRowsFilterIsEmpty(className, selectedValue.trim(), appendingClassName);
+        } else if($(this).text().trim()=='Not is empty') {
+            hideRowsFilterIsNotEmpty(className, selectedValue.trim(), appendingClassName);
         }
+
         $(this).closest('.filter-options').hide();
-        e.preventDefault();
+        event.preventDefault();
+    });
+
+    $('#filter').find('input').on('input', function() {
+
+        var selectedValue = $(this).closest('td').find('input').val();
+        var className = '';
+        var appendingClassName = '';
+        if($(this).closest('td').hasClass('gene-filter')) {
+            className = '.gene-data';
+            appendingClassName = 'gene-hide';
+        } else if($(this).closest('td').hasClass('reported-filter')) {
+            className = '.reported-data';
+            appendingClassName = 'reported-hide';
+        }
+        if(selectedValue == null || selectedValue.trim().length  == 0){
+            showHidedRows(className, appendingClassName);
+        }
     });
 
     $('#resetBtn').click(function() {
@@ -353,15 +400,66 @@ $(".theading").find('i').click(function() {
         }
     });
 
-function hideRowsFilter(className, filterValue) {
+function hideRowsFilter(className, filterValue, appendingClassName) {
     $('#tableBody').find('tr').each(function() {
         if($(this).find(className).text().trim() != filterValue) {
-            $(this).hide();
+            $(this).addClass(appendingClassName);
         }
     });
-    $('#tableBody').find('tr:hidden').each(function() {
+}
+
+function hideRowsFilterNotEqual(className, filterValue, appendingClassName) {
+    $('#tableBody').find('tr').each(function() {
         if($(this).find(className).text().trim() == filterValue) {
-            $(this).show();
+            $(this).addClass(appendingClassName);
+        }
+    });
+}
+
+function hideRowsFilterContains(className, filterValue, appendingClassName) {
+    $('#tableBody').find('tr').each(function() {
+        if(!$(this).find(className).text().trim().includes(filterValue)) {
+            $(this).addClass(appendingClassName);
+        }
+    });
+}
+
+function hideRowsFilterNotContains(className, filterValue, appendingClassName) {
+    $('#tableBody').find('tr').each(function() {
+        if($(this).find(className).text().trim().includes(filterValue)) {
+            $(this).addClass(appendingClassName);
+        }
+    });
+}
+
+function hideRowsFilterIsNotEmpty(className, filterValue, appendingClassName) {
+    $('#tableBody').find('tr').each(function() {
+        if($(this).find(className).text().trim()=='' || $(this).find(className).text().trim()=='-') {
+            $(this).addClass(appendingClassName);
+        }
+    });
+}
+
+function hideRowsFilterIsEmpty(className, filterValue, appendingClassName) {
+    $('#tableBody').find('tr').each(function() {
+        if(!($(this).find(className).text().trim()=='' || $(this).find(className).text().trim()=='-')) {
+            $(this).addClass(appendingClassName);
+        }
+    });
+}
+
+function filterStartsWith(className, filterValue, appendingClassName) {
+    $('#tableBody').find('tr').each(function() {
+        if(!$(this).find(className).text().trim().startsWith(filterValue)) {
+            $(this).addClass(appendingClassName);
+        }
+    });
+}
+
+function filterEndsWith(className, filterValue, appendingClassName) {
+    $('#tableBody').find('tr').each(function() {
+        if(!$(this).find(className).text().trim().endsWith(filterValue)) {
+            $(this).addClass(appendingClassName);
         }
     });
 }
@@ -382,8 +480,8 @@ function showRowsWhenDrag(className) {
     });
 }
 
-function showHidedRows(className) {
-    $(className).closest("tr:hidden").show();
+function showHidedRows(className, appendedClassName) {
+    $(className).closest("tr").removeClass(appendedClassName);
 }
 
 });

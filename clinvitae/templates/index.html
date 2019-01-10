@@ -108,7 +108,14 @@
                 region
             {% endif %}
         </td>
-        <td class="reported-data" data-label="REPORTED CLASSIFICATION">{{data.reported_classification}}</td>
+        <td class="reported-data" data-label="REPORTED CLASSIFICATION">
+            {% if data.id == 20  %}
+                -
+            {% endif %}
+            {% if data.id != 20  %}
+               {{data.reported_classification}}
+            {% endif %}
+        </td>
         <td class="evaluated-data" data-label="LAST EVALUATED">2019-01-08</td>
         <td class="updated-data" data-label="LAST UPDATED">2019-01-06</td>
         <td class="info-data" data-label="MORE INFO"><a href="{{data.more_info}}" target="_blank">ClinVar</a></td>
